@@ -11,6 +11,11 @@ $ git clone https://github.com/choffmeister/cvs2git.git
 $ cd cvs2git
 $ vagrant up
 $ vagrant ssh
+~~~
+
+Then within the VM:
+
+~~~ bash
 $ /vagrant/bin/cvs2git.py /path/to/cvs/dir /path/to/git/dir
 ~~~
 
