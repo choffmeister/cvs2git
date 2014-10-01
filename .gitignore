@@ -1,0 +1,11 @@
+modules/
+
+# cvs2svn
+cvs2svn-tmp/
+
+# Vagrant
+.vagrant/
+
+# OS specific trash
+.DS_Store
+Thumbs.db
