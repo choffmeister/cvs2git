@@ -48,6 +48,13 @@ def cvs2git(zip_path, module_path):
     p1 = subprocess.Popen(["cat", cvs2git_blob_path, cvs2git_dump_path], stdout=subprocess.PIPE)
     p2 = subprocess.Popen(["git", "fast-import"], stdin=p1.stdout, cwd=git_path)
     p2.communicate()
+
+    print 'Clean up repository with BFG'
+    execute(["bfg", "--delete-folders", "--no-blob-protection", "CVSROOT"], '%s/.git' % git_path)
+    execute(["git", "reflog", "expire", "--expire=now", "--all"], '%s/.git' % git_path)
+    execute(["git", "gc", "--prune=now", "--aggressive"], '%s/.git' % git_path)
+
+    print 'Checkout repository'
     execute(["git", "checkout"], git_path)
 
 def main():
